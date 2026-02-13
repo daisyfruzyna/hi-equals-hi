@@ -15,7 +15,17 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
-add_executable(hello_test tests/hello_test.cpp src/hello.cpp)
-add_executable(main main.cpp src/hello.cpp)
+add_executable(hello_test src/hello.cpp
+        src/strcmp_case_insensitive.cpp
+        src/strcmp_case_insensitive.hpp
+        tests/hello_test.cpp
+)
+add_executable(strcmp_case_insensitive_test src/hello.cpp
+        src/strcmp_case_insensitive.cpp
+        src/strcmp_case_insensitive.hpp
+        tests/strcmp_case_insensitive_test.cpp
+)
+add_executable(main main.cpp src/hello.cpp src/strcmp_case_insensitive.cpp)
 
 target_link_libraries(hello_test PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(strcmp_case_insensitive_test PRIVATE Catch2::Catch2WithMain)
